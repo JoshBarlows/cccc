@@ -44,7 +44,7 @@ Pirates = function()
     replicated.Remotes.CommF_:InvokeServer("SetTeam", "Pirates")
 end
 
-local TeddyGay = loadstring(game:HttpGet("https://pastefy.app/THGq6A8p/raw"))()
+local TeddyGay = loadstring(game:HttpGet("https://pastefy.app/oRwYCYhi/raw"))()
 
 local DoorBySea = {
 
