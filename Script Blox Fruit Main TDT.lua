@@ -131,7 +131,6 @@ if _G.Config.BlackScreen then
     title.Font = Enum.Font.GothamSemibold
     title.TextScaled = true
 
-    -- PLAYER NAME
     local name = Instance.new("TextLabel", card)
     name.Size = UDim2.new(1, 0, 0, 55)
     name.Position = UDim2.new(0, 0, 0, 45)
@@ -141,7 +140,55 @@ if _G.Config.BlackScreen then
     name.Font = Enum.Font.GothamBlack
     name.TextScaled = true
 
-    -- STATUS
+
+local discordBtn = Instance.new("TextButton")
+discordBtn.Parent = card
+discordBtn.Name = "JoinDiscord"
+discordBtn.Size = UDim2.new(0, 180, 0, 42)
+discordBtn.Position = UDim2.new(0.5, -90, 1, -55) -- căn giữa dưới card
+discordBtn.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+discordBtn.Text = "Join Discord"
+discordBtn.TextScaled = true
+discordBtn.Font = Enum.Font.GothamBold
+discordBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+discordBtn.AutoButtonColor = false
+
+
+local discCorner = Instance.new("UICorner", discordBtn)
+discCorner.CornerRadius = UDim.new(0, 12)
+
+
+local discStroke = Instance.new("UIStroke", discordBtn)
+discStroke.Color = Color3.fromRGB(255, 255, 255)
+discStroke.Thickness = 1
+discStroke.Transparency = 0.6
+
+discordBtn.MouseEnter:Connect(function()
+    discordBtn.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    discStroke.Transparency = 0.3
+end)
+
+discordBtn.MouseLeave:Connect(function()
+    discordBtn.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+    discStroke.Transparency = 0.6
+end)
+
+-- BUTTON CLICK
+discordBtn.MouseButton1Click:Connect(function()
+    local link = "https://discord.gg/tdtfreenokey" 
+
+    if setclipboard then
+        setclipboard(link)
+    end
+
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "Discord Copied",
+        Text = "Link Discord đã được copy!",
+        Duration = 4
+    })
+end)
+
+
     local status = Instance.new("TextLabel", card)
     status.Name = "Status"
     status.Size = UDim2.new(1, 0, 0, 40)
@@ -152,7 +199,6 @@ if _G.Config.BlackScreen then
     status.Font = Enum.Font.GothamSemibold
     status.TextScaled = true
 
-    -- TOTAL CANDY
     local total = Instance.new("TextLabel", card)
     total.Name = "TotalCandy"
     total.Size = UDim2.new(1, 0, 0, 40)
