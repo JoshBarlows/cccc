@@ -90,24 +90,31 @@ local function ResetChar()
 end
 
 if _G.Config.BlackScreen then
-    gui = Instance.new("ScreenGui", game.CoreGui)
+    gui = Instance.new("ScreenGui")
     gui.IgnoreGuiInset = true
     gui.ResetOnSpawn = false
+    gui.Name = "No1HubUI"
+    gui.Parent = game.CoreGui
 
-    local f = Instance.new("Frame", gui)
+    -- Frame chính chỉ để giữ text, **trong suốt hoàn toàn**
+    local f = Instance.new("Frame")
     f.Name = "Frame"
-    f.BackgroundColor3 = Color3.new(0,0,0)
+    f.Parent = gui
+    f.BackgroundTransparency = 1          -- không còn nền đen
     f.Size = UDim2.new(1,0,1,0)
 
+    -- Tiêu đề
     local t1 = Instance.new("TextLabel", f)
-    t1.Text = "No1 Hub"
+    t1.Text = "TDT HUB"
     t1.Font = Enum.Font.GothamSemibold
     t1.TextScaled = true
     t1.TextColor3 = Color3.new(1,1,1)
     t1.BackgroundTransparency = 1
     t1.Size = UDim2.new(1,0,0.1,0)
     t1.Position = UDim2.new(0,0,0.25,0)
+    t1.TextStrokeTransparency = 0.5      -- viền chữ nhẹ cho rõ hơn
 
+    -- Tên player
     local t2 = Instance.new("TextLabel", f)
     t2.Text = p.Name
     t2.Font = Enum.Font.GothamBlack
@@ -116,7 +123,9 @@ if _G.Config.BlackScreen then
     t2.BackgroundTransparency = 1
     t2.Size = UDim2.new(1,0,0.12,0)
     t2.Position = UDim2.new(0,0,0.38,0)
+    t2.TextStrokeTransparency = 0.5
 
+    -- Trạng thái Collect
     local t3 = Instance.new("TextLabel", f)
     t3.Name = "Status"
     t3.Text = "Collect: +0"
@@ -126,7 +135,9 @@ if _G.Config.BlackScreen then
     t3.BackgroundTransparency = 1
     t3.Size = UDim2.new(1,0,0.1,0)
     t3.Position = UDim2.new(0,0,0.52,0)
+    t3.TextStrokeTransparency = 0.5
 
+    -- Tổng Candy
     local t4 = Instance.new("TextLabel", f)
     t4.Name = "TotalCandy"
     t4.Text = "Total Candy: 0"
@@ -136,7 +147,9 @@ if _G.Config.BlackScreen then
     t4.BackgroundTransparency = 1
     t4.Size = UDim2.new(1,0,0.1,0)
     t4.Position = UDim2.new(0,0,0.63,0)
+    t4.TextStrokeTransparency = 0.5
 end
+
 
 local currentTotal = 0
 
