@@ -93,61 +93,75 @@ if _G.Config.BlackScreen then
     gui = Instance.new("ScreenGui")
     gui.IgnoreGuiInset = true
     gui.ResetOnSpawn = false
-    gui.Name = "No1HubUI"
+    gui.Name = "TDT_UI"
     gui.Parent = game.CoreGui
 
-    -- Frame chính chỉ để giữ text, **trong suốt hoàn toàn**
-    local f = Instance.new("Frame")
-    f.Name = "Frame"
-    f.Parent = gui
-    f.BackgroundTransparency = 1          -- không còn nền đen
-    f.Size = UDim2.new(1,0,1,0)
+    -- CARD CHÍNH
+    local card = Instance.new("Frame")
+    card.Parent = gui
+    card.AnchorPoint = Vector2.new(0.5, 0.5)
+    card.Position = UDim2.new(0.5, 0, 0.25, 0)
+    card.Size = UDim2.new(0, 520, 0, 260)
+    card.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+    card.BackgroundTransparency = 0.15
 
-    -- Tiêu đề
-    local t1 = Instance.new("TextLabel", f)
-    t1.Text = "TDT HUB"
-    t1.Font = Enum.Font.GothamSemibold
-    t1.TextScaled = true
-    t1.TextColor3 = Color3.new(1,1,1)
-    t1.BackgroundTransparency = 1
-    t1.Size = UDim2.new(1,0,0.1,0)
-    t1.Position = UDim2.new(0,0,0.25,0)
-    t1.TextStrokeTransparency = 0.5      -- viền chữ nhẹ cho rõ hơn
+    -- BO GÓC
+    local corner = Instance.new("UICorner", card)
+    corner.CornerRadius = UDim.new(0, 18)
 
-    -- Tên player
-    local t2 = Instance.new("TextLabel", f)
-    t2.Text = p.Name
-    t2.Font = Enum.Font.GothamBlack
-    t2.TextScaled = true
-    t2.TextColor3 = Color3.new(1,1,1)
-    t2.BackgroundTransparency = 1
-    t2.Size = UDim2.new(1,0,0.12,0)
-    t2.Position = UDim2.new(0,0,0.38,0)
-    t2.TextStrokeTransparency = 0.5
+    -- VIỀN
+    local stroke = Instance.new("UIStroke", card)
+    stroke.Color = Color3.fromRGB(255,255,255)
+    stroke.Thickness = 1.2
+    stroke.Transparency = 0.8
 
-    -- Trạng thái Collect
-    local t3 = Instance.new("TextLabel", f)
-    t3.Name = "Status"
-    t3.Text = "Collect: +0"
-    t3.Font = Enum.Font.GothamSemibold
-    t3.TextScaled = true
-    t3.TextColor3 = Color3.new(1,1,1)
-    t3.BackgroundTransparency = 1
-    t3.Size = UDim2.new(1,0,0.1,0)
-    t3.Position = UDim2.new(0,0,0.52,0)
-    t3.TextStrokeTransparency = 0.5
+    -- PADDING
+    local padding = Instance.new("UIPadding", card)
+    padding.PaddingTop = UDim.new(0, 12)
+    padding.PaddingBottom = UDim.new(0, 12)
+    padding.PaddingLeft = UDim.new(0, 12)
+    padding.PaddingRight = UDim.new(0, 12)
 
-    -- Tổng Candy
-    local t4 = Instance.new("TextLabel", f)
-    t4.Name = "TotalCandy"
-    t4.Text = "Total Candy: 0"
-    t4.Font = Enum.Font.GothamSemibold
-    t4.TextScaled = true
-    t4.TextColor3 = Color3.new(1,1,1)
-    t4.BackgroundTransparency = 1
-    t4.Size = UDim2.new(1,0,0.1,0)
-    t4.Position = UDim2.new(0,0,0.63,0)
-    t4.TextStrokeTransparency = 0.5
+    -- TITLE
+    local title = Instance.new("TextLabel", card)
+    title.Size = UDim2.new(1, 0, 0, 40)
+    title.BackgroundTransparency = 1
+    title.Text = "TDT HUB"
+    title.TextColor3 = Color3.new(1,1,1)
+    title.Font = Enum.Font.GothamSemibold
+    title.TextScaled = true
+
+    -- PLAYER NAME
+    local name = Instance.new("TextLabel", card)
+    name.Size = UDim2.new(1, 0, 0, 55)
+    name.Position = UDim2.new(0, 0, 0, 45)
+    name.BackgroundTransparency = 1
+    name.Text = p.Name
+    name.TextColor3 = Color3.new(1,1,1)
+    name.Font = Enum.Font.GothamBlack
+    name.TextScaled = true
+
+    -- STATUS
+    local status = Instance.new("TextLabel", card)
+    status.Name = "Status"
+    status.Size = UDim2.new(1, 0, 0, 40)
+    status.Position = UDim2.new(0, 0, 0, 110)
+    status.BackgroundTransparency = 1
+    status.Text = "Collect: +0"
+    status.TextColor3 = Color3.new(1,1,1)
+    status.Font = Enum.Font.GothamSemibold
+    status.TextScaled = true
+
+    -- TOTAL CANDY
+    local total = Instance.new("TextLabel", card)
+    total.Name = "TotalCandy"
+    total.Size = UDim2.new(1, 0, 0, 40)
+    total.Position = UDim2.new(0, 0, 0, 155)
+    total.BackgroundTransparency = 1
+    total.Text = "Total Candy: 0"
+    total.TextColor3 = Color3.new(1,1,1)
+    total.Font = Enum.Font.GothamSemibold
+    total.TextScaled = true
 end
 
 
