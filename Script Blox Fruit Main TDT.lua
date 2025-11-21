@@ -160,54 +160,62 @@ if _G.Config.BlackScreen then
     total.Font = Enum.Font.GothamSemibold
     total.TextScaled = true
 
-    -- BUTTON JOIN DISCORD
+  -- BUTTON JOIN DISCORD (ĐẸP + KHÔNG CHE CHỮ)
 local discordBtn = Instance.new("TextButton")
 discordBtn.Parent = card
 discordBtn.Name = "JoinDiscord"
-discordBtn.Size = UDim2.new(0, 180, 0, 42)
-discordBtn.Position = UDim2.new(0.5, -90, 1, -55) -- căn giữa dưới card
-discordBtn.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+
+discordBtn.AnchorPoint = Vector2.new(0.5, 1)                 -- căn từ đáy
+discordBtn.Position = UDim2.new(0.5, 0, 1, -20)              -- nằm sát đáy card, không đè chữ
+discordBtn.Size = UDim2.new(0.55, 0, 0, 40)                  -- chiếm ~55% chiều ngang
+
+discordBtn.BackgroundColor3 = Color3.fromRGB(54, 57, 63)     -- màu kiểu Discord
 discordBtn.Text = "Join Discord"
 discordBtn.TextScaled = true
 discordBtn.Font = Enum.Font.GothamBold
 discordBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 discordBtn.AutoButtonColor = false
+discordBtn.ZIndex = 5
 
 -- BO GÓC
 local discCorner = Instance.new("UICorner", discordBtn)
-discCorner.CornerRadius = UDim.new(0, 12)
+discCorner.CornerRadius = UDim.new(0, 14)
 
--- VIỀN
+-- VIỀN MỎNG
 local discStroke = Instance.new("UIStroke", discordBtn)
-discStroke.Color = Color3.fromRGB(255, 255, 255)
+discStroke.Color = Color3.fromRGB(255,255,255)
 discStroke.Thickness = 1
-discStroke.Transparency = 0.6
+discStroke.Transparency = 0.4
+discStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 
 -- HOVER EFFECT
 discordBtn.MouseEnter:Connect(function()
-    discordBtn.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-    discStroke.Transparency = 0.3
+    discordBtn.BackgroundColor3 = Color3.fromRGB(88, 101, 242) -- tím Discord khi hover
+    discStroke.Transparency = 0.15
 end)
 
 discordBtn.MouseLeave:Connect(function()
-    discordBtn.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
-    discStroke.Transparency = 0.6
+    discordBtn.BackgroundColor3 = Color3.fromRGB(54, 57, 63)
+    discStroke.Transparency = 0.4
 end)
 
--- BUTTON CLICK
+-- CLICK ACTION
 discordBtn.MouseButton1Click:Connect(function()
-    local link = "https://discord.gg/yourserverhere" -- ĐỔI LINK NÈ
+    local link = "https://discord.gg/yourserverhere" -- ĐỔI LINK Ở ĐÂY
 
     if setclipboard then
         setclipboard(link)
     end
 
-    game.StarterGui:SetCore("SendNotification", {
-        Title = "Discord Copied",
-        Text = "Link Discord đã được copy!",
-        Duration = 4
-    })
+    pcall(function()
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Discord Copied",
+            Text = "Link Discord đã được copy vào clipboard.",
+            Duration = 4
+        })
+    end)
 end)
+
 
 end
 
