@@ -121,7 +121,7 @@ function Report(Message)
         local AffectedIndexes = {0,0,0,0}
         
         request({
-            Url = "https://discord.com/api/webhooks/1429008280486940735/3-DIjYlPBT44phvGb0r9PyxleV8LTPIBSjQUDOgI1eumRjTxO-NoBHe4xQuBGY-f6zG3", 
+            Url = "", 
             Method = "POST", 
             Headers = {["Content-Type"] = "application/json"}, 
             Body = Body 
@@ -158,6 +158,45 @@ HopGui.Enabled = true
 HopGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 HopGui.IgnoreGuiInset = true
 
+--======== BACKGROUND + GLOW ==========
+local Background = Instance.new("Frame")
+Background.Name = "Background"
+Background.Parent = HopGui
+Background.Size = UDim2.new(1, 0, 1, 0)
+Background.Position = UDim2.new(0, 0, 0, 0)
+Background.BackgroundColor3 = Color3.fromRGB(5, 10, 25)
+Background.BorderSizePixel = 0
+Background.ZIndex = 0
+Background.BackgroundTransparency = 0
+
+local BGGradient = Instance.new("UIGradient")
+BGGradient.Parent = Background
+BGGradient.Rotation = 35
+BGGradient.Color = ColorSequence.new({
+    ColorSequenceKeypoint.new(0,   Color3.fromRGB(10, 20, 60)),
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(25, 90, 150)),
+    ColorSequenceKeypoint.new(1,   Color3.fromRGB(5, 10, 30))
+})
+
+local function createGlow(size, pos, transparency)
+    local glow = Instance.new("ImageLabel")
+    glow.Name = "Glow"
+    glow.Parent = Background
+    glow.AnchorPoint = Vector2.new(0.5, 0.5)
+    glow.Position = pos
+    glow.Size = size
+    glow.BackgroundTransparency = 1
+    glow.Image = "rbxassetid://5028857084" -- soft circular glow
+    glow.ImageColor3 = Color3.fromRGB(0, 255, 240)
+    glow.ImageTransparency = transparency
+    glow.ZIndex = 1
+    return glow
+end
+
+createGlow(UDim2.new(0, 450, 0, 450), UDim2.new(0.2, 0, 0.2, 0), 0.65)
+createGlow(UDim2.new(0, 550, 0, 550), UDim2.new(0.8, 0, 0.7, 0), 0.75)
+--=====================================
+
 NameHub.Name = "NameHub"
 NameHub.Parent = HopGui
 NameHub.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -168,6 +207,7 @@ NameHub.Font = Enum.Font.GothamBold
 NameHub.Text = "No1 Hub"
 NameHub.TextColor3 = Color3.fromRGB(255, 255, 255)
 NameHub.TextSize = 38
+NameHub.ZIndex = 3
 
 local UIStroke = Instance.new("UIStroke")
 UIStroke.Parent = NameHub
@@ -183,6 +223,7 @@ ToggleContainer.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 ToggleContainer.BackgroundTransparency = 0.2
 ToggleContainer.BorderSizePixel = 0
 ToggleContainer.ClipsDescendants = true
+ToggleContainer.ZIndex = 4
 
 local UICorner = Instance.new("UICorner")
 UICorner.CornerRadius = UDim.new(1, 0)
@@ -199,6 +240,7 @@ ToggleButton.Position = UDim2.new(0.5, 0, 0.5, 0)
 ToggleButton.Size = UDim2.new(1, 0, 1, 0)
 ToggleButton.BackgroundTransparency = 1
 ToggleButton.BorderSizePixel = 0
+ToggleButton.ZIndex = 5
 
 ToggleIcon.Name = "ToggleIcon"
 ToggleIcon.Parent = ToggleContainer
@@ -211,6 +253,7 @@ ToggleIcon.Text = "👁️"
 ToggleIcon.TextColor3 = Color3.fromRGB(255, 255, 255)
 ToggleIcon.TextSize = 24
 ToggleIcon.TextScaled = true
+ToggleIcon.ZIndex = 5
 
 local function createTextLabel(text, position)
     local Stroke = Instance.new("UIStroke")
@@ -226,6 +269,7 @@ local function createTextLabel(text, position)
     Label.TextColor3 = Color3.fromRGB(255, 255, 255)
     Label.TextSize = 15
     Label.RichText = true
+    Label.ZIndex = 3
 
     Stroke.Parent = Label
     Stroke.Color = Color3.fromRGB(0, 0, 0)
@@ -251,7 +295,7 @@ function BlurManager:Create()
     blurFrame.BackgroundTransparency = 1
     blurFrame.BorderSizePixel = 0
     blurFrame.Size = UDim2.new(1, 0, 1, 0)
-    blurFrame.ZIndex = 0
+    blurFrame.ZIndex = 2
     self.blurFrame = blurFrame
     self.blurIntensity = 0
     return self
@@ -295,7 +339,9 @@ function BlurManager:RegisterUI(uiElement)
     end
 end
 
+-- tạo blur effect & đăng ký background cho blur
 local blurEffect = BlurManager:Create()
+BlurManager:RegisterUI(Background)
 
 function SetText(Name, Text)
     task.spawn(function()
@@ -409,6 +455,11 @@ end
 function Interface.RegisterForBlur(uiElement)
     blurEffect:RegisterUI(uiElement)
 end
+
+-- gán toggle click (nếu bạn chưa có chỗ nào gọi)
+ToggleButton.MouseButton1Click:Connect(function()
+    ToggleUI()
+end)
 
 ToggleButton.MouseButton1Click:Connect(function()
     ToggleUI()
