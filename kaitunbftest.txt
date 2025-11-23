@@ -158,16 +158,20 @@ HopGui.Enabled = true
 HopGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 HopGui.IgnoreGuiInset = true
 
+-- TEXT LABEL
 NameHub.Name = "NameHub"
-NameHub.Parent = HopGui
+NameHub.Parent = Background
 NameHub.AnchorPoint = Vector2.new(0.5, 0.5)
-NameHub.Position = UDim2.new(0.5, 0, 0.3, 0)
-NameHub.Size = UDim2.new(1, 0, 0, 80)
+NameHub.Position = UDim2.new(0.5, 0, 0.5, 0)
+NameHub.Size = UDim2.new(1, -20, 1, -20)
 NameHub.BackgroundTransparency = 1
 NameHub.Font = Enum.Font.GothamBold
 NameHub.Text = "TDT KAITUN"
 NameHub.TextColor3 = Color3.fromRGB(255, 255, 255)
-NameHub.TextSize = 38
+NameHub.TextSize = 42
+NameHub.TextStrokeTransparency = 0.7
+NameHub.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+NameHub.TextWrapped = true
 
 local UIStroke = Instance.new("UIStroke")
 UIStroke.Parent = NameHub
