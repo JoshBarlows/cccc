@@ -158,6 +158,29 @@ HopGui.Enabled = true
 HopGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 HopGui.IgnoreGuiInset = true
 
+-- BLUR BACKGROUND (tạo chiều sâu)
+Blur.Parent = game.Lighting
+Blur.Size = 6
+
+-- BACKGROUND FRAME
+Background.Name = "NameHubBackground"
+Background.Parent = ScreenGui
+Background.AnchorPoint = Vector2.new(0.5, 0.5)
+Background.Position = UDim2.new(0.5, 0, 0.3, 0)
+Background.Size = UDim2.new(0.45, 0, 0.1, 0)
+Background.BackgroundColor3 = Color3.fromRGB(10, 10, 15)
+Background.BackgroundTransparency = 0.25
+
+-- Corner bo tròn
+UICorner.CornerRadius = UDim.new(0, 18)
+UICorner.Parent = Background
+
+-- Stroke viền sáng nhẹ
+UIStroke.Parent = Background
+UIStroke.Color = Color3.fromRGB(255, 255, 255)
+UIStroke.Thickness = 1.6
+UIStroke.Transparency = 0.45
+
 -- TEXT LABEL
 NameHub.Name = "NameHub"
 NameHub.Parent = Background
@@ -172,6 +195,7 @@ NameHub.TextSize = 42
 NameHub.TextStrokeTransparency = 0.7
 NameHub.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
 NameHub.TextWrapped = true
+
 
 local UIStroke = Instance.new("UIStroke")
 UIStroke.Parent = NameHub
