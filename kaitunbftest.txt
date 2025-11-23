@@ -157,163 +157,96 @@ HopGui.Parent = game:GetService("CoreGui")
 HopGui.Enabled = true
 HopGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 HopGui.IgnoreGuiInset = true
-
---// KHUNG CHÍNH CỦA HUB
-local HubFrame = Instance.new("Frame")
-HubFrame.Name = "HubFrame"
-HubFrame.Parent = HopGui
-HubFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-HubFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
-HubFrame.Size = UDim2.new(0, 430, 0, 260)
-HubFrame.BackgroundColor3 = Color3.fromRGB(5, 10, 25)
-HubFrame.BackgroundTransparency = 0.12
-HubFrame.BorderSizePixel = 0
-
-local HubCorner = Instance.new("UICorner")
-HubCorner.CornerRadius = UDim.new(0, 18)
-HubCorner.Parent = HubFrame
-
-local HubStroke = Instance.new("UIStroke")
-HubStroke.Parent = HubFrame
-HubStroke.Color = Color3.fromRGB(9, 255, 248)
-HubStroke.Thickness = 1.8
-HubStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-
-local HubGradient = Instance.new("UIGradient")
-HubGradient.Parent = HubFrame
-HubGradient.Color = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 10, 40)),
-    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(10, 10, 35)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
-})
-HubGradient.Rotation = 90
-
-
---// THANH HEADER
-local Header = Instance.new("Frame")
-Header.Name = "Header"
-Header.Parent = HubFrame
-Header.AnchorPoint = Vector2.new(0.5, 0)
-Header.Position = UDim2.new(0.5, 0, 0, 10)
-Header.Size = UDim2.new(1, -30, 0, 60)
-Header.BackgroundTransparency = 1
-
-local HeaderLayout = Instance.new("UIListLayout")
-HeaderLayout.Parent = Header
-HeaderLayout.FillDirection = Enum.FillDirection.Vertical
-HeaderLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-HeaderLayout.VerticalAlignment = Enum.VerticalAlignment.Top
-HeaderLayout.SortOrder = Enum.SortOrder.LayoutOrder
-HeaderLayout.Padding = UDim.new(0, 2)
-
+--// TIÊU ĐỀ HUB
 NameHub.Name = "NameHub"
-NameHub.Parent = Header
-NameHub.AnchorPoint = Vector2.new(0.5, 0)
-NameHub.Position = UDim2.new(0.5, 0, 0, 0)
-NameHub.Size = UDim2.new(1, 0, 0, 30)
+NameHub.Parent = HopGui
+NameHub.AnchorPoint = Vector2.new(0.5, 0.5)
+NameHub.Position = UDim2.new(0.5, 0, 0.3, 0)
+NameHub.Size = UDim2.new(1, 0, 0, 80)
 NameHub.BackgroundTransparency = 1
 NameHub.Font = Enum.Font.GothamBlack
 NameHub.Text = "No1 Hub"
 NameHub.TextColor3 = Color3.fromRGB(255, 255, 255)
-NameHub.TextScaled = true
-NameHub.TextSize = 36
+NameHub.TextSize = 38
+NameHub.TextStrokeTransparency = 1
+NameHub.TextWrapped = true
 
 local TitleStroke = Instance.new("UIStroke")
 TitleStroke.Parent = NameHub
 TitleStroke.Color = Color3.fromRGB(0, 0, 0)
-TitleStroke.Thickness = 1
+TitleStroke.Thickness = 1.5
 
-local SubTitle = Instance.new("TextLabel")
-SubTitle.Name = "SubTitle"
-SubTitle.Parent = Header
-SubTitle.Size = UDim2.new(1, 0, 0, 20)
-SubTitle.BackgroundTransparency = 1
-SubTitle.Font = Enum.Font.Gotham
-SubTitle.Text = "discord.gg/FshzCuJ5tV"
-SubTitle.TextColor3 = Color3.fromRGB(180, 220, 255)
-SubTitle.TextTransparency = 0.1
-SubTitle.TextSize = 14
+--// NÚT TOGGLE ẨN / HIỆN HUB
+ToggleContainer.Name = "ToggleContainer"
+ToggleContainer.Parent = HopGui
+ToggleContainer.AnchorPoint = Vector2.new(1, 0)
+ToggleContainer.Position = UDim2.new(1, -20, 0, 20)
+ToggleContainer.Size = UDim2.new(0, 50, 0, 50)
+ToggleContainer.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+ToggleContainer.BackgroundTransparency = 0.2
+ToggleContainer.BorderSizePixel = 0
+ToggleContainer.ClipsDescendants = true
 
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(1, 0)
+UICorner.Parent = ToggleContainer
 
---// VÙNG HIỂN THỊ STATUS
-local Content = Instance.new("Frame")
-Content.Name = "Content"
-Content.Parent = HubFrame
-Content.AnchorPoint = Vector2.new(0.5, 1)
-Content.Position = UDim2.new(0.5, 0, 1, -15)
-Content.Size = UDim2.new(1, -40, 0, 150)
-Content.BackgroundTransparency = 1
+ToggleUIStroke.Parent = ToggleContainer
+ToggleUIStroke.Color = Color3.fromRGB(9, 255, 248)
+ToggleUIStroke.Thickness = 2
 
-local ContentLayout = Instance.new("UIListLayout")
-ContentLayout.Parent = Content
-ContentLayout.FillDirection = Enum.FillDirection.Vertical
-ContentLayout.HorizontalAlignment = Enum.HorizontalAlignment.Left
-ContentLayout.VerticalAlignment = Enum.VerticalAlignment.Top
-ContentLayout.SortOrder = Enum.SortOrder.LayoutOrder
-ContentLayout.Padding = UDim.new(0, 6)
+ToggleButton.Name = "ToggleButton"
+ToggleButton.Parent = ToggleContainer
+ToggleButton.AnchorPoint = Vector2.new(0.5, 0.5)
+ToggleButton.Position = UDim2.new(0.5, 0, 0.5, 0)
+ToggleButton.Size = UDim2.new(1, 0, 1, 0)
+ToggleButton.BackgroundTransparency = 1
+ToggleButton.BorderSizePixel = 0
 
--- Thanh line phát sáng trên cùng
-local AccentLine = Instance.new("Frame")
-AccentLine.Name = "AccentLine"
-AccentLine.Parent = Content
-AccentLine.Size = UDim2.new(1, 0, 0, 2)
-AccentLine.BackgroundColor3 = Color3.fromRGB(9, 255, 248)
+ToggleIcon.Name = "ToggleIcon"
+ToggleIcon.Parent = ToggleContainer
+ToggleIcon.AnchorPoint = Vector2.new(0.5, 0.5)
+ToggleIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
+ToggleIcon.Size = UDim2.new(0.7, 0, 0.7, 0)
+ToggleIcon.BackgroundTransparency = 1
+ToggleIcon.Font = Enum.Font.GothamBold
+ToggleIcon.Text = "👁️"
+ToggleIcon.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleIcon.TextSize = 24
+ToggleIcon.TextScaled = true
 
-local AccentGradient = Instance.new("UIGradient")
-AccentGradient.Parent = AccentLine
-AccentGradient.Color = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Color3.fromRGB(0, 0, 0)),
-    ColorSequenceKeypoint.new(0.15, Color3.fromRGB(9, 255, 248)),
-    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(9, 255, 248)),
-    ColorSequenceKeypoint.new(0.85, Color3.fromRGB(9, 255, 248)),
-    ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
-})
+-- Logic toggle (nếu phía dưới bạn chưa có)
+local isOpen = true
+ToggleButton.MouseButton1Click:Connect(function()
+    isOpen = not isOpen
+    HopGui.Enabled = isOpen
+    ToggleIcon.Text = isOpen and "👁️" or "✖"
+end)
 
--- Hàm tạo từng dòng status dạng "Label : Value"
-local function createStatusRow(parent, labelText, valueText)
-    local Row = Instance.new("Frame")
-    Row.Name = "Row"
-    Row.Parent = parent
-    Row.Size = UDim2.new(1, 0, 0, 24)
-    Row.BackgroundTransparency = 1
+--// HÀM TẠO TEXT LABEL (GIỮ NGUYÊN TÊN VÀ THAM SỐ)
+local function createTextLabel(text, position)
+    local Label = Instance.new("TextLabel")
+    Label.Name = "StatusLabel"
+    Label.Parent = HopGui          -- Giữ parent là HopGui để các vị trí cũ vẫn đúng
+    Label.AnchorPoint = Vector2.new(0.5, 0.5)
+    Label.Position = position      -- Vẫn dùng đúng position bạn truyền vào phía dưới
+    Label.Size = UDim2.new(0, 260, 0, 30)
+    Label.BackgroundTransparency = 1
+    Label.Font = Enum.Font.Gotham
+    Label.Text = text
+    Label.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Label.TextSize = 15
+    Label.RichText = true
+    Label.TextWrapped = true
 
-    local RowLayout = Instance.new("UIListLayout")
-    RowLayout.Parent = Row
-    RowLayout.FillDirection = Enum.FillDirection.Horizontal
-    RowLayout.HorizontalAlignment = Enum.HorizontalAlignment.Left
-    RowLayout.VerticalAlignment = Enum.VerticalAlignment.Center
-    RowLayout.SortOrder = Enum.SortOrder.LayoutOrder
-    RowLayout.Padding = UDim.new(0, 6)
+    local Stroke = Instance.new("UIStroke")
+    Stroke.Parent = Label
+    Stroke.Color = Color3.fromRGB(0, 0, 0)
+    Stroke.Thickness = 1
 
-    local Left = Instance.new("TextLabel")
-    Left.Name = "Label"
-    Left.Parent = Row
-    Left.Size = UDim2.new(0.55, 0, 1, 0)
-    Left.BackgroundTransparency = 1
-    Left.Font = Enum.Font.GothamSemibold
-    Left.Text = labelText
-    Left.TextXAlignment = Enum.TextXAlignment.Left
-    Left.TextColor3 = Color3.fromRGB(210, 230, 255)
-    Left.TextSize = 14
-
-    local Right = Instance.new("TextLabel")
-    Right.Name = "Value"
-    Right.Parent = Row
-    Right.Size = UDim2.new(0.45, 0, 1, 0)
-    Right.BackgroundTransparency = 1
-    Right.Font = Enum.Font.Gotham
-    Right.Text = valueText
-    Right.TextXAlignment = Enum.TextXAlignment.Right
-    Right.TextColor3 = Color3.fromRGB(255, 255, 255)
-    Right.TextSize = 14
-
-    local RightStroke = Instance.new("UIStroke")
-    RightStroke.Parent = Right
-    RightStroke.Color = Color3.fromRGB(0, 0, 0)
-    RightStroke.Thickness = 1
-
-    return Row, Right
+    return Label
 end
+
 
 -- Các dòng status bạn đang dùng
 local mainRow, mainValue = createStatusRow(Content, "Main Task", "Farming Level (Skip Mode 1)")
