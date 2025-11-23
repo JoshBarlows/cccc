@@ -141,7 +141,16 @@ local player = game.Players.LocalPlayer
 
 repeat task.wait() until game.CoreGui
 
--- Khung chứa NameHub
+local HopGui = Instance.new("ScreenGui")
+local NameHub = Instance.new("TextLabel")
+local UIStroke = Instance.new("UIStroke")
+local StrokeBounty = Instance.new("UIStroke")
+local Bounty = Instance.new("TextLabel")
+local ToggleButton = Instance.new("ImageButton")
+local ToggleContainer = Instance.new("Frame")
+local ToggleUIStroke = Instance.new("UIStroke")
+local ToggleIcon = Instance.new("TextLabel")
+local UIReferences = {}
 local NameHubFrame = Instance.new("Frame")
 local NameHubCorner = Instance.new("UICorner")
 local NameHubStroke = Instance.new("UIStroke")
@@ -155,18 +164,11 @@ NameHubFrame.Position = UDim2.new(0.5, 0, 0.18, 0) -- hơi cao hơn 1 chút cho 
 NameHubFrame.Size = UDim2.new(0.4, 0, 0, 70)       -- không full màn, nhìn gọn và sang hơn
 NameHubFrame.BackgroundColor3 = Color3.fromRGB(15, 18, 35)
 NameHubFrame.BackgroundTransparency = 0.05
-
--- BO GÓC
-NameHubCorner.Parent = NameHubFrame
-NameHubCorner.CornerRadius = UDim.new(0, 16)
-
--- VIỀN NGOÀI
-NameHubStroke.Parent = NameHubFrame
-NameHubStroke.Color = Color3.fromRGB(120, 180, 255)
-NameHubStroke.Thickness = 1.5
-NameHubStroke.Transparency = 0.25
-NameHubStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-
+HopGui.Name = "emdaxanhmatroiabcyxz"
+HopGui.Parent = game:GetService("CoreGui")
+HopGui.Enabled = true
+HopGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+HopGui.IgnoreGuiInset = true
 -- GRADIENT NỀN
 NameHubGradient.Parent = NameHubFrame
 NameHubGradient.Color = ColorSequence.new({
@@ -174,7 +176,6 @@ NameHubGradient.Color = ColorSequence.new({
     ColorSequenceKeypoint.new(1, Color3.fromRGB(25, 40, 80))
 })
 NameHubGradient.Rotation = 0
-
 -- TEXT LABEL
 NameHub.Name = "NameHub"
 NameHub.Parent = NameHubFrame
@@ -192,6 +193,10 @@ NameHub.TextWrapped = true
 NameHub.TextStrokeTransparency = 0.4
 NameHub.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
 
+local UIStroke = Instance.new("UIStroke")
+UIStroke.Parent = NameHub
+UIStroke.Color = Color3.fromRGB(0, 0, 0)
+UIStroke.Thickness = 1
 
 ToggleContainer.Name = "ToggleContainer"
 ToggleContainer.Parent = HopGui
