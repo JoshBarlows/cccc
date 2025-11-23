@@ -156,14 +156,40 @@ local NameHubCorner = Instance.new("UICorner")
 local NameHubStroke = Instance.new("UIStroke")
 local NameHubGradient = Instance.new("UIGradient")
 
--- FRAME BACKGROUND
+-- BO GÓC
+local Corner = Instance.new("UICorner", NameHubFrame)
+Corner.CornerRadius = UDim.new(0, 14)
+-- *** LAYER 1 – OUTER GLOW BORDER ***
+local Glow = Instance.new("UIStroke")
+Glow.Parent = NameHubFrame
+Glow.Color = Color3.fromRGB(0, 170, 255)
+Glow.Thickness = 3
+Glow.Transparency = 0.65
+Glow.ApplyStrokeMode = Enum.ApplyStrokeMode.Outer
+
+-- *** LAYER 2 – MAIN BORDER ***
+local Border = Instance.new("UIStroke")
+Border.Parent = NameHubFrame
+Border.Color = Color3.fromRGB(120, 190, 255)
+Border.Thickness = 2
+Border.Transparency = 0.15
+Border.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+-- *** LAYER 3 – INNER HIGHLIGHT ***
+local Inner = Instance.new("UIStroke")
+Inner.Parent = NameHubFrame
+Inner.Color = Color3.fromRGB(200, 230, 255)
+Inner.Thickness = 1
+Inner.Transparency = 0.7
+Inner.ApplyStrokeMode = Enum.ApplyStrokeMode.Inner
+
 NameHubFrame.Name = "NameHubFrame"
 NameHubFrame.Parent = HopGui
 NameHubFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-NameHubFrame.Position = UDim2.new(0.5, 0, 0.18, 0) -- hơi cao hơn 1 chút cho đẹp
-NameHubFrame.Size = UDim2.new(0.4, 0, 0, 70)       -- không full màn, nhìn gọn và sang hơn
-NameHubFrame.BackgroundColor3 = Color3.fromRGB(15, 18, 35)
-NameHubFrame.BackgroundTransparency = 0.05
+NameHubFrame.Position = UDim2.new(0.5, 0, 0.2, 0)
+NameHubFrame.Size = UDim2.new(0.4, 0, 0, 70)
+NameHubFrame.BackgroundColor3 = Color3.fromRGB(5, 5, 10)
+NameHubFrame.BackgroundTransparency = 0.15
 HopGui.Name = "emdaxanhmatroiabcyxz"
 HopGui.Parent = game:GetService("CoreGui")
 HopGui.Enabled = true
@@ -176,21 +202,17 @@ NameHubGradient.Color = ColorSequence.new({
     ColorSequenceKeypoint.new(1, Color3.fromRGB(25, 40, 80))
 })
 NameHubGradient.Rotation = 0
--- TEXT LABEL
-NameHub.Name = "NameHub"
+-- TEXT
 NameHub.Parent = NameHubFrame
 NameHub.AnchorPoint = Vector2.new(0.5, 0.5)
 NameHub.Position = UDim2.new(0.5, 0, 0.5, 0)
-NameHub.Size = UDim2.new(1, -30, 1, -16)
+NameHub.Size = UDim2.new(1, -20, 1, -10)
 NameHub.BackgroundTransparency = 1
 NameHub.Font = Enum.Font.GothamBold
 NameHub.Text = "No1 Hub"
 NameHub.TextColor3 = Color3.fromRGB(255, 255, 255)
-NameHub.TextSize = 40
-NameHub.TextXAlignment = Enum.TextXAlignment.Center
-NameHub.TextYAlignment = Enum.TextYAlignment.Center
-NameHub.TextWrapped = true
-NameHub.TextStrokeTransparency = 0.4
+NameHub.TextSize = 42
+NameHub.TextStrokeTransparency = 0.3
 NameHub.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
 
 local UIStroke = Instance.new("UIStroke")
