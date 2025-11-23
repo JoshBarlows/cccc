@@ -157,26 +157,23 @@ HopGui.Parent = game:GetService("CoreGui")
 HopGui.Enabled = true
 HopGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 HopGui.IgnoreGuiInset = true
---// TIÊU ĐỀ HUB
+
 NameHub.Name = "NameHub"
 NameHub.Parent = HopGui
 NameHub.AnchorPoint = Vector2.new(0.5, 0.5)
 NameHub.Position = UDim2.new(0.5, 0, 0.3, 0)
 NameHub.Size = UDim2.new(1, 0, 0, 80)
 NameHub.BackgroundTransparency = 1
-NameHub.Font = Enum.Font.GothamBlack
-NameHub.Text = "No1 Hub"
+NameHub.Font = Enum.Font.GothamBold
+NameHub.Text = "TDT KAITUN"
 NameHub.TextColor3 = Color3.fromRGB(255, 255, 255)
 NameHub.TextSize = 38
-NameHub.TextStrokeTransparency = 1
-NameHub.TextWrapped = true
 
-local TitleStroke = Instance.new("UIStroke")
-TitleStroke.Parent = NameHub
-TitleStroke.Color = Color3.fromRGB(0, 0, 0)
-TitleStroke.Thickness = 1.5
+local UIStroke = Instance.new("UIStroke")
+UIStroke.Parent = NameHub
+UIStroke.Color = Color3.fromRGB(0, 0, 0)
+UIStroke.Thickness = 1
 
---// NÚT TOGGLE ẨN / HIỆN HUB
 ToggleContainer.Name = "ToggleContainer"
 ToggleContainer.Parent = HopGui
 ToggleContainer.AnchorPoint = Vector2.new(1, 0)
@@ -215,94 +212,27 @@ ToggleIcon.TextColor3 = Color3.fromRGB(255, 255, 255)
 ToggleIcon.TextSize = 24
 ToggleIcon.TextScaled = true
 
--- Logic toggle (nếu phía dưới bạn chưa có)
-local isOpen = true
-ToggleButton.MouseButton1Click:Connect(function()
-    isOpen = not isOpen
-    HopGui.Enabled = isOpen
-    ToggleIcon.Text = isOpen and "👁️" or "✖"
-end)
-
---// HÀM TẠO TEXT LABEL (GIỮ NGUYÊN TÊN VÀ THAM SỐ)
 local function createTextLabel(text, position)
+    local Stroke = Instance.new("UIStroke")
     local Label = Instance.new("TextLabel")
     Label.Name = "StatusLabel"
-    Label.Parent = HopGui          -- Giữ parent là HopGui để các vị trí cũ vẫn đúng
+    Label.Parent = HopGui
     Label.AnchorPoint = Vector2.new(0.5, 0.5)
-    Label.Position = position      -- Vẫn dùng đúng position bạn truyền vào phía dưới
-    Label.Size = UDim2.new(0, 260, 0, 30)
+    Label.Position = position
+    Label.Size = UDim2.new(0, 240, 0, 28)
     Label.BackgroundTransparency = 1
     Label.Font = Enum.Font.Gotham
     Label.Text = text
     Label.TextColor3 = Color3.fromRGB(255, 255, 255)
     Label.TextSize = 15
     Label.RichText = true
-    Label.TextWrapped = true
 
-    local Stroke = Instance.new("UIStroke")
     Stroke.Parent = Label
     Stroke.Color = Color3.fromRGB(0, 0, 0)
     Stroke.Thickness = 1
 
     return Label
 end
-
-
--- Các dòng status bạn đang dùng
-local mainRow, mainValue = createStatusRow(Content, "Main Task", "Farming Level (Skip Mode 1)")
-local subRow, subValue   = createStatusRow(Content, "Sub Task", "Farming until 150,000 Beli (Black Leg)")
-local combatRow, combatValue = createStatusRow(Content, "Combat", "1")
-local levelRow, levelValue   = createStatusRow(Content, "Mode", "LevelFarm")
-
--- Bạn có thể giữ lại reference mainValue/subValue/... để update runtime
-
-
---// NÚT TOGGLE ẨN/HIỆN HUB (VẪN GIỮ PHONG CÁCH ICON 👁️)
-ToggleContainer.Name = "ToggleContainer"
-ToggleContainer.Parent = HopGui
-ToggleContainer.AnchorPoint = Vector2.new(1, 0)
-ToggleContainer.Position = UDim2.new(1, -20, 0, 20)
-ToggleContainer.Size = UDim2.new(0, 44, 0, 44)
-ToggleContainer.BackgroundColor3 = Color3.fromRGB(15, 20, 35)
-ToggleContainer.BackgroundTransparency = 0.1
-ToggleContainer.BorderSizePixel = 0
-ToggleContainer.ClipsDescendants = true
-
-local UICorner = Instance.new("UICorner")
-UICorner.CornerRadius = UDim.new(1, 0)
-UICorner.Parent = ToggleContainer
-
-ToggleUIStroke.Parent = ToggleContainer
-ToggleUIStroke.Color = Color3.fromRGB(9, 255, 248)
-ToggleUIStroke.Thickness = 2
-
-ToggleButton.Name = "ToggleButton"
-ToggleButton.Parent = ToggleContainer
-ToggleButton.AnchorPoint = Vector2.new(0.5, 0.5)
-ToggleButton.Position = UDim2.new(0.5, 0, 0.5, 0)
-ToggleButton.Size = UDim2.new(1, 0, 1, 0)
-ToggleButton.BackgroundTransparency = 1
-ToggleButton.BorderSizePixel = 0
-
-ToggleIcon.Name = "ToggleIcon"
-ToggleIcon.Parent = ToggleContainer
-ToggleIcon.AnchorPoint = Vector2.new(0.5, 0.5)
-ToggleIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
-ToggleIcon.Size = UDim2.new(0.7, 0, 0.7, 0)
-ToggleIcon.BackgroundTransparency = 1
-ToggleIcon.Font = Enum.Font.GothamBold
-ToggleIcon.Text = "👁️"
-ToggleIcon.TextColor3 = Color3.fromRGB(255, 255, 255)
-ToggleIcon.TextScaled = true
-
--- Logic ẩn / hiện
-local isOpen = true
-
-ToggleButton.MouseButton1Click:Connect(function()
-    isOpen = not isOpen
-    HubFrame.Visible = isOpen
-    ToggleIcon.Text = isOpen and "👁️" or "✖"
-end)
 
 MainTextLabel = createTextLabel("Status", UDim2.new(0.5, 0, 0.4, 0))
 Interface.Instances.MainTextLabel = MainTextLabel
